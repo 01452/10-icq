@@ -6,6 +6,9 @@ import type {StatsInterface, UserInterface} from "./utils/constants.ts";
 import {IcqContext} from "./utils/context.ts";
 
 const App = () => {
+    const url = import.meta.env.VITE_AVATAR_MONSTER;
+    console.log(url)
+
     const [user, setUser] = useState<UserInterface>({
         name: 'Monster',
         avatar: 'https://gravatar.com/avatar/000?d=monsterid'
