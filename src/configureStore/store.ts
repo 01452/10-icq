@@ -1,6 +1,6 @@
 import type {IcqInterface} from "../utils/constants.ts";
-import {icqReducer} from "../reducers/icqReducer.ts";
 import {legacy_createStore as createStore} from "redux";
+import {icqReducer} from "../reducers/icqReducer.ts";
 
 const initialState:IcqInterface = {
     user: {
@@ -13,4 +13,7 @@ const initialState:IcqInterface = {
     }
 }
 
-export const store = createStore(icqReducer,initialState);
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+export const store = createStore(icqReducer,
+    initialState);
