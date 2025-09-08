@@ -1,14 +1,13 @@
-import {useDispatch, useSelector} from "react-redux";
-import type {IcqInterface, UserInterface} from "../utils/constants.ts";
-import {changeAvatar} from "../actions/icqActions.ts";
+import {useAppDispatch, useAppSelector} from "../app/hooks.ts";
+import {changeAvatar} from "../features/user/userSlice.ts";
 
 interface Props {
     size?: string
 }
 
 const Avatar = ({size}: Props) => {
-    const {name, avatar} = useSelector<IcqInterface>(state => state.user) as UserInterface;
-    const dispatch = useDispatch();
+    const {avatar, name} = useAppSelector(state => state.user);
+    const dispatch = useAppDispatch();
 
     return (
         <img

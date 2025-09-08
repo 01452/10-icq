@@ -1,17 +1,17 @@
 import Avatar from "./Avatar.tsx";
-import {useDispatch, useSelector} from "react-redux";
-import type {IcqInterface} from "../utils/constants.ts";
-import {changeStats} from "../actions/icqActions.ts";
+import {useAppDispatch, useAppSelector} from "../app/hooks.ts";
+import {changeStats} from "../features/stats/statsSlice.ts";
 
 const Stats = () => {
-    const {user, stats} = useSelector((state: IcqInterface) => state);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
+    const {name} = useAppSelector(state => state.user);
+    const {followers,following} = useAppSelector(state => state.stats);
 
     return (
         <div className={'user-stats'}>
             <div>
                 <Avatar/>
-                <p>Name: {user.name}</p>
+                <p>Name: {name}</p>
             </div>
             <div className={'stats'}>
                 <div
@@ -20,14 +20,14 @@ const Stats = () => {
                     onContextMenu={(e) => {
                         e.preventDefault();
                         dispatch(changeStats("followers", -1))
-                    }}>Followers: {stats.followers}</div>
+                    }}>Followers: {followers}</div>
                 <div
                     onClick={() =>
                         dispatch(changeStats("following", 1))}
                     onContextMenu={(e) => {
                         e.preventDefault();
                         dispatch(changeStats("following", -1))
-                    }}>Following: {stats.following}</div>
+                    }}>Following: {following}</div>
             </div>
         </div>
     );
